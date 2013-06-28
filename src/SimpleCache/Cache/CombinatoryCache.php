@@ -2,6 +2,8 @@
 
 namespace SimpleCache\Cache;
 
+use InvalidArgumentException;
+
 /**
  * Allows combining multiple caches.
  *
@@ -20,13 +22,28 @@ class CombinatoryCache implements Cache {
 	protected $caches;
 
 	public function __construct( array $caches ) {
-		$this->assertAreCaches( $caches );
+		$this->assertCachesListIsValid( $caches );
 
 		$this->caches = $caches;
 	}
 
+	protected function assertCachesListIsValid( array $caches ) {
+		$this->assertNotEmpty( $caches );
+		$this->assertAreCaches( $caches );
+	}
+
+	protected function assertNotEmpty( $caches ) {
+		if ( empty( $caches ) ) {
+			throw new InvalidArgumentException( 'The caches list needs to contain at least one cache' );
+		}
+	}
+
 	protected function assertAreCaches( $caches ) {
-		// TODO
+		foreach ( $caches as $cache ) {
+			if ( !is_object( $cache ) || !( $cache instanceof Cache ) ) {
+				throw new InvalidArgumentException( 'The cache list can only contain instances of Cache' );
+			}
+		}
 	}
 
 	public function get( $key ) {
@@ -44,7 +61,9 @@ class CombinatoryCache implements Cache {
 	}
 
 	public function set( $key, $value ) {
-		// TODO
+		foreach ( $this->caches as $cache ) {
+			$cache->set( $key, $value );
+		}
 	}
 
 }
