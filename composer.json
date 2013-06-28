@@ -3,7 +3,7 @@
 	"type": "library",
 	"description": "Small library defining a minimalistic caching interface and provides some basic implementations",
 	"keywords": [
-		"cache",
+		"cache"
 	],
 	"homepage": "https://github.com/JeroenDeDauw/SimpleCache",
 	"license": "GPL-2.0+",
