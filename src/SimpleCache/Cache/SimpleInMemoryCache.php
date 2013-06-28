@@ -14,7 +14,7 @@ namespace SimpleCache\Cache;
  */
 class SimpleInMemoryCache implements Cache {
 
-	protected $memoryCache;
+	protected $memoryCache = array();
 
 	public function get( $key ) {
 		return array_key_exists( $key, $this->memoryCache ) ? $this->memoryCache[$key] : null;
