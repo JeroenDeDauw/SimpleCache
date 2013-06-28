@@ -1,12 +1,12 @@
-[![Build Status](https://secure.travis-ci.org/JeroenDeDauw/GitHub.png?branch=master)](http://travis-ci.org/JeroenDeDauw/GitHub)
+[![Build Status](https://secure.travis-ci.org/JeroenDeDauw/SimpleCache.png?branch=master)](http://travis-ci.org/JeroenDeDauw/SimpleCache)
 
 About
 =====
 
-Simple MediaWiki extension that allows embedding the content of files hosted in GitHub git repositories.
+Small library defining a minimalistic caching interface and provides some basic implementations.
 
 Links
 -----
 
-* [GitHub on Packagist](https://packagist.org/packages/jeroen-de-dauw/mediawiki-github)
-* [Latest version of the readme file](https://github.com/JeroenDeDauw/GitHub/blob/master/README.md)
+* [SimpleCache on Packagist](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
+* [Latest version of the readme file](https://github.com/JeroenDeDauw/SimpleCache/blob/master/README.md)

@@ -1,0 +1,26 @@
+{
+	"name": "jeroen-de-dauw/simple-cache",
+	"type": "library",
+	"description": "Small library defining a minimalistic caching interface and provides some basic implementations",
+	"keywords": [
+		"cache",
+	],
+	"homepage": "https://github.com/JeroenDeDauw/SimpleCache",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "http://jeroendedauw.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"autoload": {
+		"files" : [
+			"SimpleCache.php"
+		]
+	}
+}
