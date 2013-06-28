@@ -69,4 +69,97 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 		$cache->set( 'hax', 1337 );
 	}
 
+	public function testGetWithOneCache() {
+		$containedCache = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache
+			->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->with(
+				$this->equalTo( 'hax' )
+			)
+			->will( $this->returnValue( 1337 ) );
+
+		$cache = new CombinatoryCache( array( $containedCache ) );
+
+		$this->assertEquals( 1337, $cache->get( 'hax' ) );
+		$this->assertEquals( 1337, $cache->get( 'hax' ) );
+	}
+
+	public function testSetHitsAllCaches() {
+		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache0
+			->expects( $this->exactly( 2 ) )
+			->method( 'set' );
+
+		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache1
+			->expects( $this->exactly( 2 ) )
+			->method( 'set' );
+
+		$cache = new CombinatoryCache( array( $containedCache0, $containedCache1 ) );
+
+		$cache->set( 'hax', 1337 );
+		$cache->set( 'hax', 1337 );
+	}
+
+	public function testHasHitsCachesInCorrectOrder() {
+		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache0
+			->expects( $this->once() )
+			->method( 'has' )
+			->will( $this->returnValue( false ) );
+
+		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache1
+			->expects( $this->once() )
+			->method( 'has' )
+			->will( $this->returnValue( true ) );
+
+		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache2
+			->expects( $this->never() )
+			->method( 'has' );
+
+		$cache = new CombinatoryCache( array( $containedCache0, $containedCache1, $containedCache2 ) );
+
+		$cache->has( 'foo' );
+	}
+
+	public function testGetHitsCachesInCorrectOrder() {
+		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache0
+			->expects( $this->any() )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$containedCache0
+			->expects( $this->any() )
+			->method( 'has' )
+			->will( $this->returnValue( false ) );
+
+		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache1
+			->expects( $this->once() )
+			->method( 'get' )
+			->will( $this->returnValue( 42 ) );
+
+		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache2
+			->expects( $this->never() )
+			->method( 'get' );
+
+		$cache = new CombinatoryCache( array( $containedCache0, $containedCache1, $containedCache2 ) );
+
+		$this->assertEquals( 42, $cache->get( 'foo' ) );
+	}
+
 }

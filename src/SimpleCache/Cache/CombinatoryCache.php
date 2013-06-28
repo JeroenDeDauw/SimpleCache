@@ -47,7 +47,15 @@ class CombinatoryCache implements Cache {
 	}
 
 	public function get( $key ) {
-		// TODO
+		foreach ( $this->caches as $cache ) {
+			$value = $cache->get( $key );
+
+			if ( $value !== null ) {
+				return $value;
+			}
+		}
+
+		return null;
 	}
 
 	public function has( $key ) {
