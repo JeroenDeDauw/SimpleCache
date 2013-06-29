@@ -37,3 +37,18 @@ spl_autoload_register( function ( $className ) {
 	}
 } );
 // @codeCoverageIgnoreEnd
+
+if ( defined( 'MEDIAWIKI' ) ) {
+	$GLOBALS['wgExtensionMessagesFiles']['SimpleCache'] = __DIR__ . '/SimpleCache.i18n.php';
+
+	$GLOBALS['wgExtensionCredits']['other'][] = array(
+		'path' => __FILE__,
+		'name' => 'SimpleCache',
+		'version' => SimpleCache_VERSION,
+		'author' => array(
+			'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]',
+		),
+		'url' => 'https://github.com/JeroenDeDauw/SimpleCache',
+		'descriptionmsg' => 'simplecache-desc'
+	);
+}
