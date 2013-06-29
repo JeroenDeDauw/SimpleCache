@@ -7,6 +7,15 @@ use InvalidArgumentException;
 /**
  * Allows combining multiple caches.
  *
+ * The caches first in the list are hit first. Therefore cheap caches
+ * (ie in memory caches) should be placed before more expensive ones
+ * (ie memcached).
+ *
+ * When a cache entry is requested and is not found in the first cache,
+ * a new entry will be written to this cache. In case the requested entry
+ * was found in a later cache, its value will be written to the first one.
+ * In case it was not found at all, null will be written to the first cache.
+ *
  * @file
  * @since 0.1
  * @ingroup SimpleCache
@@ -21,10 +30,13 @@ class CombinatoryCache implements Cache {
 	 */
 	protected $caches;
 
+	protected $hasMoreThenOneCache;
+
 	public function __construct( array $caches ) {
 		$this->assertCachesListIsValid( $caches );
 
 		$this->caches = $caches;
+		$this->hasMoreThenOneCache = count( $this->caches ) > 1;
 	}
 
 	protected function assertCachesListIsValid( array $caches ) {
@@ -47,15 +59,30 @@ class CombinatoryCache implements Cache {
 	}
 
 	public function get( $key ) {
-		foreach ( $this->caches as $cache ) {
+		reset( $this->caches );
+		$firstCacheIndex = key( $this->caches );
+
+		foreach ( $this->caches as $currentIndex => $cache ) {
 			$value = $cache->get( $key );
 
 			if ( $value !== null ) {
+				if ( $currentIndex !== $firstCacheIndex ) {
+					$this->setInFirstCache( $firstCacheIndex, $key, $value );
+				}
+
 				return $value;
 			}
 		}
 
+		if ( $this->hasMoreThenOneCache ) {
+			$this->setInFirstCache( $firstCacheIndex, $key, null );
+		}
+
 		return null;
+	}
+
+	protected function setInFirstCache( $firstCacheIndex, $key, $value ) {
+		$this->caches[$firstCacheIndex]->set( $key, $value );
 	}
 
 	public function has( $key ) {

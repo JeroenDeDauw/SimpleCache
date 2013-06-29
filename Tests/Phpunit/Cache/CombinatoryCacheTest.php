@@ -162,4 +162,53 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 42, $cache->get( 'foo' ) );
 	}
 
+	public function testGetFromLowerCacheWritesToUpperOne() {
+		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache0
+			->expects( $this->any() )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$containedCache0
+			->expects( $this->any() )
+			->method( 'has' )
+			->will( $this->returnValue( false ) );
+
+		$containedCache0
+			->expects( $this->once() )
+			->method( 'set' )
+			->with(
+				$this->equalTo( 'foo' ),
+				$this->equalTo( 42 )
+			);
+
+		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache1
+			->expects( $this->any() )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$containedCache1
+			->expects( $this->any() )
+			->method( 'has' )
+			->will( $this->returnValue( false ) );
+
+		$containedCache1
+			->expects( $this->never() )
+			->method( 'set' );
+
+		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache2
+			->expects( $this->once() )
+			->method( 'get' )
+			->will( $this->returnValue( 42 ) );
+
+		$cache = new CombinatoryCache( array( $containedCache0, $containedCache1, $containedCache2 ) );
+
+		$this->assertEquals( 42, $cache->get( 'foo' ) );
+	}
+
 }
