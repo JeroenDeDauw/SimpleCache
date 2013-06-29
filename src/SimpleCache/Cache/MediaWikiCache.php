@@ -23,7 +23,13 @@ class MediaWikiCache implements Cache {
 	}
 
 	public function get( $key ) {
-		return $this->mediaWikiCache->get( $key );
+		$value = $this->mediaWikiCache->get( $key );
+
+		if ( $value === false ) {
+			return null;
+		}
+
+		return $value;
 	}
 
 	public function has( $key ) {
