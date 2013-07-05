@@ -1,12 +1,12 @@
 <?php
 
 /**
- * PHPUnit test bootstrap file for the GitHub extension.
+ * PHPUnit test bootstrap file for the SimpleCache extension.
  *
  * @since 0.1
  *
  * @file
- * @ingroup GitHub
+ * @ingroup SimpleCache
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
