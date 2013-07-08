@@ -15,7 +15,7 @@ the git repository and take care of loading yourself.
 ### Composer
 
 To add this package as a local, per-project dependency to your project, simply add a
-dependency on `JeroenDeDauw/SimpleCache` to your project's `composer.json` file.
+dependency on `jeroen-de-dauw/simple-cache` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
 SimpleCache 1.0:
 
