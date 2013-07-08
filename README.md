@@ -25,7 +25,7 @@ SimpleCache 1.0:
         }
     }
 
-### Manuel
+### Manual
 
 Get the SimpleCache code, either via git, or some other means. Also get all dependencies.
 You can find a list of the dependencies in the "require" section of the composer.json file.
