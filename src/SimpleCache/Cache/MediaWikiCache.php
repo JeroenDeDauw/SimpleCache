@@ -17,9 +17,15 @@ use BagOStuff;
 class MediaWikiCache implements Cache {
 
 	protected $mediaWikiCache;
+	protected $expiryTimeInSeconds;
 
-	public function __construct( BagOStuff $mediaWikiCache ) {
+	/**
+	 * @param BagOStuff $mediaWikiCache
+	 * @param int $expiryTimeInSeconds 0 for no expiry time
+	 */
+	public function __construct( BagOStuff $mediaWikiCache, $expiryTimeInSeconds = 0 ) {
 		$this->mediaWikiCache = $mediaWikiCache;
+		$this->expiryTimeInSeconds = $expiryTimeInSeconds;
 	}
 
 	public function get( $key ) {
@@ -37,7 +43,7 @@ class MediaWikiCache implements Cache {
 	}
 
 	public function set( $key, $value ) {
-		$this->mediaWikiCache->set( $key, $value );
+		$this->mediaWikiCache->set( $key, $value, $this->expiryTimeInSeconds );
 	}
 
 }
