@@ -12,7 +12,7 @@ if ( defined( 'SimpleCache_VERSION' ) ) {
 	return;
 }
 
-define( 'SimpleCache_VERSION', '1.0' );
+define( 'SimpleCache_VERSION', '1.0.1' );
 
 // @codeCoverageIgnoreStart
 spl_autoload_register( function ( $className ) {
