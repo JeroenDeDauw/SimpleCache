@@ -1,11 +1,13 @@
 # SimpleCache
 
-[![Latest Stable Version](https://poser.pugx.org/jeroen-de-dauw/simple-cache/version.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
-[![Download count](https://poser.pugx.org/jeroen-de-dauw/simple-cache/d/total.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
+Small library defining a minimalistic caching interface and provides some basic implementations.
+
 [![Build Status](https://secure.travis-ci.org/JeroenDeDauw/SimpleCache.png?branch=master)](http://travis-ci.org/JeroenDeDauw/SimpleCache)
 [![Coverage Status](https://coveralls.io/repos/JeroenDeDauw/SimpleCache/badge.png?branch=master)](https://coveralls.io/r/JeroenDeDauw/SimpleCache?branch=master)
+[![Dependency Status](https://www.versioneye.com/package/php--jeroen-de-dauw--simple-cache/badge.png)](https://www.versioneye.com/package/php--jeroen-de-dauw--simple-cache)
 
-Small library defining a minimalistic caching interface and provides some basic implementations.
+[![Latest Stable Version](https://poser.pugx.org/jeroen-de-dauw/simple-cache/version.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
+[![Download count](https://poser.pugx.org/jeroen-de-dauw/simple-cache/d/total.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
 
 ## Installation
 
