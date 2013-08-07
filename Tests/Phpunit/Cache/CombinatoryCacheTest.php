@@ -211,4 +211,34 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 42, $cache->get( 'foo' ) );
 	}
 
+	public function testMissingAllCachesReturnsNull() {
+		$key = 'foo';
+
+		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache0
+			->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache1
+			->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+
+		$containedCache2
+			->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->will( $this->returnValue( null ) );
+
+		$cache = new CombinatoryCache( array( $containedCache0, $containedCache1, $containedCache2 ) );
+
+		$this->assertNull( $cache->get( $key ) );
+		$this->assertNull( $cache->get( $key ) );
+	}
+
 }

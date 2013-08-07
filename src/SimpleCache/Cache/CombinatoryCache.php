@@ -14,7 +14,6 @@ use InvalidArgumentException;
  * When a cache entry is requested and is not found in the first cache,
  * a new entry will be written to this cache. In case the requested entry
  * was found in a later cache, its value will be written to the first one.
- * In case it was not found at all, null will be written to the first cache.
  *
  * @file
  * @since 0.1
@@ -72,10 +71,6 @@ class CombinatoryCache implements Cache {
 
 				return $value;
 			}
-		}
-
-		if ( $this->hasMoreThenOneCache ) {
-			$this->setInFirstCache( $firstCacheIndex, $key, null );
 		}
 
 		return null;
