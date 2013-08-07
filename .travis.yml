@@ -5,6 +5,10 @@ php:
   - 5.4
   - 5.5
 
+after_script:
+  - composer require satooshi/php-coveralls:dev-master
+  - php vendor/bin/coveralls -v
+
 notifications:
   email:
     recipients:
