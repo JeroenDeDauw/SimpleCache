@@ -42,6 +42,11 @@ as hobby project.
 
 ## Release notes
 
+### 1.0.3 (2013-08-07)
+
+* Removed pointless code from CombinatoryCache
+* Added missing test for CombinatoryCache
+
 ### 1.0.2 (2013-08-07)
 
 * Fixed bug in MediaWikiCache::has
@@ -60,4 +65,5 @@ as hobby project.
 * [SimpleCache on Packagist](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
 * [SimpleCache on Ohloh](https://www.ohloh.net/p/simplecache)
 * [TravisCI build status](http://travis-ci.org/JeroenDeDauw/SimpleCache)
+* [Code coverage status](https://coveralls.io/r/JeroenDeDauw/SimpleCache?branch=master)
 * [Latest version of the readme file](https://github.com/JeroenDeDauw/SimpleCache/blob/master/README.md)
