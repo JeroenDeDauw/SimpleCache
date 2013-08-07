@@ -42,6 +42,11 @@ as hobby project.
 
 ## Release notes
 
+### 1.0.2 (2013-08-07)
+
+* Fixed bug in MediaWikiCache::has
+* Added unit tests for MediaWikiCache
+
 ### 1.0.1 (2013-07-15)
 
 * Added optional expiryTime parameter to the constructor of MediaWikiCache.

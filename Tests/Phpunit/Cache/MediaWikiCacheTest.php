@@ -16,44 +16,61 @@ use SimpleCache\Cache\MediaWikiCache;
  */
 class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 
-	/**
-	 * @dataProvider valueProvider
-	 */
-	public function testSetAndGetOneValue( $value ) {
-//		$key = 'foo';
-//
-//		$cache = new MediaWikiCache();
-//
-//		$this->assertFalse( $cache->has( $key ) );
-//
-//		$cache->set( $key, $value );
-//
-//		$this->assertEquals(
-//			$value,
-//			$cache->get( $key )
-//		);
-//
-//		$this->assertTrue( $cache->has( $key ) );
+	public function testSetValue() {
+		$value = 'foobar';
+		$key = 'foo';
+		$expiryTime = 42;
 
-		$this->assertTrue( true ); // TODO
+		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'set' ) );
+
+		$bagOfStuff->expects( $this->once() )
+			->method( 'set' )
+			->with(
+				$this->equalTo( $key ),
+				$this->equalTo( $value ),
+				$this->equalTo( $expiryTime )
+			);
+
+		$cache = new MediaWikiCache( $bagOfStuff, $expiryTime );
+
+		$cache->set( $key, $value );
 	}
 
-	public function valueProvider() {
-		$argLists = array();
+	public function testGetValueWithReturnFoobarAsValue() {
+		$key = 'foo';
+		$value = 'foobar';
 
-		$argLists[] = array( true );
-		$argLists[] = array( false );
-		$argLists[] = array( 0 );
-		$argLists[] = array( '' );
-		$argLists[] = array( '1' );
-		$argLists[] = array( '0' );
-		$argLists[] = array( 'foo bar baz bah' );
-		$argLists[] = array( array() );
-		$argLists[] = array( (object)array() );
-		$argLists[] = array( (object)array( 'foo' => 'bar' ) );
-		$argLists[] = array( array( 42, 4 => '2', 13.37 ) );
+		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'get' ) );
 
-		return $argLists;
+		$bagOfStuff->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->with(
+				$this->equalTo( $key )
+			)
+			->will( $this->returnValue( $value ) );
+
+		$cache = new MediaWikiCache( $bagOfStuff );
+
+		$this->assertEquals( $value, $cache->get( $key ) );
+		$this->assertTrue( $cache->has( $key ) );
+	}
+
+	public function testGetValueWithReturnFalseAsValue() {
+		$key = 'foo';
+
+		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'get' ) );
+
+		$bagOfStuff->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->with(
+				$this->equalTo( $key )
+			)
+			->will( $this->returnValue( false ) );
+
+		$cache = new MediaWikiCache( $bagOfStuff );
+
+		$this->assertNull( $cache->get( $key ) );
+		$this->assertFalse( $cache->has( $key ) );
 	}
 
 }

@@ -39,7 +39,7 @@ class MediaWikiCache implements Cache {
 	}
 
 	public function has( $key ) {
-		return $this->get( $key ) !== false;
+		return $this->get( $key ) !== null;
 	}
 
 	public function set( $key, $value ) {
