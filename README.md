@@ -4,7 +4,7 @@ Small library defining a minimalistic caching interface and provides some basic 
 
 [![Build Status](https://secure.travis-ci.org/JeroenDeDauw/SimpleCache.png?branch=master)](http://travis-ci.org/JeroenDeDauw/SimpleCache)
 [![Coverage Status](https://coveralls.io/repos/JeroenDeDauw/SimpleCache/badge.png?branch=master)](https://coveralls.io/r/JeroenDeDauw/SimpleCache?branch=master)
-[![Dependency Status](https://www.versioneye.com/package/php--jeroen-de-dauw--simple-cache/badge.png)](https://www.versioneye.com/package/php--jeroen-de-dauw--simple-cache)
+[![Dependency Status](https://www.versioneye.com/user/projects/52828fb8632bac53e30000a0/badge.png)](https://www.versioneye.com/user/projects/52828fb8632bac53e30000a0)
 
 [![Latest Stable Version](https://poser.pugx.org/jeroen-de-dauw/simple-cache/version.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
 [![Download count](https://poser.pugx.org/jeroen-de-dauw/simple-cache/d/total.png)](https://packagist.org/packages/jeroen-de-dauw/simple-cache)
@@ -66,4 +66,3 @@ as hobby project.
 * [SimpleCache on Ohloh](https://www.ohloh.net/p/simplecache)
 * [TravisCI build status](http://travis-ci.org/JeroenDeDauw/SimpleCache)
 * [Code coverage status](https://coveralls.io/r/JeroenDeDauw/SimpleCache?branch=master)
-* [Latest version of the readme file](https://github.com/JeroenDeDauw/SimpleCache/blob/master/README.md)
