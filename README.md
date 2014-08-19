@@ -4,7 +4,6 @@ Small library defining a minimalistic caching interface and provides some basic 
 
 [![Build Status](https://secure.travis-ci.org/JeroenDeDauw/SimpleCache.png?branch=master)](http://travis-ci.org/JeroenDeDauw/SimpleCache)
 [![Coverage Status](https://coveralls.io/repos/JeroenDeDauw/SimpleCache/badge.png?branch=master)](https://coveralls.io/r/JeroenDeDauw/SimpleCache?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/52828fb8632bac53e30000a0/badge.png)](https://www.versioneye.com/user/projects/52828fb8632bac53e30000a0)
 
 [![Latest Stable Version](https://poser.pugx.org/jeroen/simple-cache/version.png)](https://packagist.org/packages/jeroen/simple-cache)
 [![Download count](https://poser.pugx.org/jeroen/simple-cache/d/total.png)](https://packagist.org/packages/jeroen/simple-cache)

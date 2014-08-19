@@ -1,5 +1,6 @@
 {
 	"name": "jeroen/simple-cache",
+	"replace": { "jeroen-de-dauw/simple-cache": "*" },
 	"type": "library",
 	"description": "Small library defining a minimalistic caching interface and provides some basic implementations",
 	"keywords": [
