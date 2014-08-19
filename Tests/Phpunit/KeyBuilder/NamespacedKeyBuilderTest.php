@@ -7,10 +7,6 @@ use SimpleCache\KeyBuilder\NamespacedKeyBuilder;
 /**
  * @covers SimpleCache\KeyBuilder\NamespacedKeyBuilder
  *
- * @file
- * @ingroup SimpleCache
- * @group SimpleCache
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */

@@ -7,10 +7,6 @@ use SimpleCache\Cache\CombinatoryCache;
 /**
  * @covers SimpleCache\Cache\CombinatoryCache
  *
- * @file
- * @ingroup SimpleCache
- * @group SimpleCache
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
