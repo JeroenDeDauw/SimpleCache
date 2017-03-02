@@ -2,6 +2,7 @@
 
 namespace SimpleCache\Tests\Phpunit\Cache;
 
+use SimpleCache\Cache\Cache;
 use SimpleCache\Cache\CombinatoryCache;
 
 /**
@@ -16,7 +17,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider invalidConstructorArgumentProvider
 	 */
 	public function testCannotConstructWithNonCaches( $invalidCachesList ) {
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->expectException( 'InvalidArgumentException' );
 
 		new CombinatoryCache( $invalidCachesList );
 	}
@@ -24,7 +25,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	public function invalidConstructorArgumentProvider() {
 		$argLists = array();
 
-		$containedCache = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache = $this->createMock( Cache::class );
 
 		$argLists[] = array( array() );
 		$argLists[] = array( array( null ) );
@@ -35,7 +36,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testHasWithOneCache() {
-		$containedCache = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache = $this->createMock( Cache::class );
 
 		$containedCache
 			->expects( $this->exactly( 2 ) )
@@ -49,7 +50,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testSetWithOneCache() {
-		$containedCache = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache = $this->createMock( Cache::class );
 
 		$containedCache
 			->expects( $this->exactly( 2 ) )
@@ -66,7 +67,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetWithOneCache() {
-		$containedCache = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache = $this->createMock( Cache::class );
 
 		$containedCache
 			->expects( $this->exactly( 2 ) )
@@ -83,13 +84,13 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testSetHitsAllCaches() {
-		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache0 = $this->createMock( Cache::class );
 
 		$containedCache0
 			->expects( $this->exactly( 2 ) )
 			->method( 'set' );
 
-		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache1 = $this->createMock( Cache::class );
 
 		$containedCache1
 			->expects( $this->exactly( 2 ) )
@@ -102,21 +103,21 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testHasHitsCachesInCorrectOrder() {
-		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache0 = $this->createMock( Cache::class );
 
 		$containedCache0
 			->expects( $this->once() )
 			->method( 'has' )
 			->will( $this->returnValue( false ) );
 
-		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache1 = $this->createMock( Cache::class );
 
 		$containedCache1
 			->expects( $this->once() )
 			->method( 'has' )
 			->will( $this->returnValue( true ) );
 
-		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache2 = $this->createMock( Cache::class );
 
 		$containedCache2
 			->expects( $this->never() )
@@ -128,7 +129,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetHitsCachesInCorrectOrder() {
-		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache0 = $this->createMock( Cache::class );
 
 		$containedCache0
 			->expects( $this->any() )
@@ -140,14 +141,14 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 			->method( 'has' )
 			->will( $this->returnValue( false ) );
 
-		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache1 = $this->createMock( Cache::class );
 
 		$containedCache1
 			->expects( $this->once() )
 			->method( 'get' )
 			->will( $this->returnValue( 42 ) );
 
-		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache2 = $this->createMock( Cache::class );
 
 		$containedCache2
 			->expects( $this->never() )
@@ -159,7 +160,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetFromLowerCacheWritesToUpperOne() {
-		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache0 = $this->createMock( Cache::class );
 
 		$containedCache0
 			->expects( $this->any() )
@@ -179,7 +180,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->equalTo( 42 )
 			);
 
-		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache1 = $this->createMock( Cache::class );
 
 		$containedCache1
 			->expects( $this->any() )
@@ -195,7 +196,7 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 			->expects( $this->never() )
 			->method( 'set' );
 
-		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache2 = $this->createMock( Cache::class );
 
 		$containedCache2
 			->expects( $this->once() )
@@ -210,21 +211,21 @@ class CombinatoryCacheTest extends \PHPUnit_Framework_TestCase {
 	public function testMissingAllCachesReturnsNull() {
 		$key = 'foo';
 
-		$containedCache0 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache0 = $this->createMock( Cache::class );
 
 		$containedCache0
 			->expects( $this->exactly( 2 ) )
 			->method( 'get' )
 			->will( $this->returnValue( null ) );
 
-		$containedCache1 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache1 = $this->createMock( Cache::class );
 
 		$containedCache1
 			->expects( $this->exactly( 2 ) )
 			->method( 'get' )
 			->will( $this->returnValue( null ) );
 
-		$containedCache2 = $this->getMock( 'SimpleCache\Cache\Cache' );
+		$containedCache2 = $this->createMock( Cache::class );
 
 		$containedCache2
 			->expects( $this->exactly( 2 ) )

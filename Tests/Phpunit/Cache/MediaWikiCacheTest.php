@@ -12,12 +12,18 @@ use SimpleCache\Cache\MediaWikiCache;
  */
 class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 
+	public function setUp() {
+		if ( !class_exists( 'BagOStuff' ) ) {
+			$this->markTestSkipped( 'MediaWiki not available' );
+		}
+	}
+
 	public function testSetValue() {
 		$value = 'foobar';
 		$key = 'foo';
 		$expiryTime = 42;
 
-		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'set' ) );
+		$bagOfStuff = $this->createMock( 'BagOStuff', array( 'set' ) );
 
 		$bagOfStuff->expects( $this->once() )
 			->method( 'set' )
@@ -36,7 +42,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		$key = 'foo';
 		$value = 'foobar';
 
-		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'get' ) );
+		$bagOfStuff = $this->createMock( 'BagOStuff', array( 'get' ) );
 
 		$bagOfStuff->expects( $this->exactly( 2 ) )
 			->method( 'get' )
@@ -54,7 +60,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 	public function testGetValueWithReturnFalseAsValue() {
 		$key = 'foo';
 
-		$bagOfStuff = $this->getMock( 'BagOStuff', array( 'get' ) );
+		$bagOfStuff = $this->createMock( 'BagOStuff', array( 'get' ) );
 
 		$bagOfStuff->expects( $this->exactly( 2 ) )
 			->method( 'get' )

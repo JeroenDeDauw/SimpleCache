@@ -34,6 +34,10 @@ You can find a list of the dependencies in the "require" section of the composer
 Load all dependencies and the load the SimpleCache library by including its entry point:
 SimpleCache.php.
 
+## Running the tests
+
+	composer ci
+
 ## Authors
 
 SimpleCache has been written by [Jeroen De Dauw](https://github.com/JeroenDeDauw)
@@ -41,7 +45,11 @@ as hobby project.
 
 ## Release notes
 
-### 2.0 (2014-08-19)
+### 2.1.0 (dev)
+
+* Dropped support for PHP 5.3, 5.4 and 5.5
+
+### 2.0.0 (2014-08-19)
 
 * Renamed package from `jeroen-de-dauw/simple-cache` to `jeroen/simple-cache`
 * Removed `SimpleCache.php` entry point. Autoloading is now done via Composers PSR-4 support
@@ -61,7 +69,7 @@ as hobby project.
 
 * Added optional expiryTime parameter to the constructor of MediaWikiCache.
 
-### 1.0 (2013-07-05)
+### 1.0.0 (2013-07-05)
 
 * Initial release.
 
