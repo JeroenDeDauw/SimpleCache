@@ -15,10 +15,6 @@ use InvalidArgumentException;
  * a new entry will be written to this cache. In case the requested entry
  * was found in a later cache, its value will be written to the first one.
  *
- * @file
- * @since 0.1
- * @ingroup SimpleCache
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */

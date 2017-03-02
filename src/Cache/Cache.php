@@ -7,10 +7,6 @@ namespace SimpleCache\Cache;
  * The difference with key-value stores is that entries in a cache
  * might expire or be purged after they have been set.
  *
- * @file
- * @since 0.1
- * @ingroup SimpleCache
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */

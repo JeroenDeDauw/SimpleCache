@@ -5,10 +5,6 @@ namespace SimpleCache\Cache;
 /**
  * Very simple in memory cache. Entries are kept around until the object gets destructed.
  *
- * @file
- * @since 0.1
- * @ingroup SimpleCache
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
