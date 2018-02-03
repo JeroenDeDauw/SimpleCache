@@ -19,11 +19,11 @@ the git repository and take care of loading yourself.
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `jeroen/simple-cache` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-SimpleCache 2.0:
+SimpleCache 2.x:
 
     {
         "require": {
-            "jeroen/simple-cache": "~2.0.0"
+            "jeroen/simple-cache": "~2.0"
         }
     }
 
